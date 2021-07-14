@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
    entry: {
      index: './src/index.js',
      modules: './src/Assets/Javascript/modules.js',
+     linkedList: './src/Assets/Javascript/linkedList.js',
    },
    module: {
     rules: [

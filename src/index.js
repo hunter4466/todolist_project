@@ -1,14 +1,26 @@
 import htmlBuilder from './Assets/Javascript/modules.js';
 import './style.css';
 
+const toDoList = document.getElementById('to_do_list')
+let newTaskInput = document.createElement('newTaskInput')
+let taskList = []
+
+
+
+function build(){
+    let itemsArray = []
+    
 
 
 
 
+    htmlBuilder(itemsArray)
+}
 
-  let itemsArray = []
-  let newComponent = document.createElement('h1')
-  itemsArray.push([bodyObj,newComponent,null,"guacamole"])
-  htmlBuilder(itemsArray)
 
-  
+
+newTaskInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      build()
+    }
+});
