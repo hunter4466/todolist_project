@@ -6,7 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
      index: './src/index.js',
      modules: './src/Assets/Javascript/modules.js',
      linkedList: './src/Assets/Javascript/linkedList.js',
+     dataHandler: './src/Assets/Javascript/dataHandler.js',
    },
+   devServer: {
+    contentBase: './dist',
+   hot: true,
+  },
    module: {
     rules: [
       {

@@ -32,9 +32,61 @@ export default class linkedList{
     }
   }
 
-  returnArray(){
+  replaceIndex(first,second){
+    if(!this.head){
+      return []
+    }else{
+      let allArray = []
+      let currentNode = this.head
+      allArray.push(currentNode.value.index)
+      while(currentNode.nextNode){
+        currentNode = currentNode.nextNode;
+        allArray.push(currentNode.value.index)
+      }
+      let newArray = []
+      for(let i = 0;i<allArray.length;i+=1){
+        if(i = first){
+          newArray.push(allArray[second])
+        }else if(i = second){
+          newArray.push(allArray[first])
+        }else{
+          newArray.push(allArray[i])
+        }
+        let currentNode2 = this.head
+        let count = 0
+        currentNode2.value.index = newArray[count]
+        while(currentNode2.nextNode){
+          count+=1
+          currentNode2 = currentNode2.nextNode;
+          currentNode2.value.index = newArray[count]
+        }
+        
+        
+        
+      }
+
+      
+    }
+  }
+
+  indexify() {
     if(!this.head){
       return false
+    }else{
+      let currentNode = this.head
+      let count = 1;
+      currentNode.value.index = count;
+      while(currentNode.nextNode){
+        count+=1
+        currentNode = currentNode.nextNode;
+        currentNode.value.index = count;
+      }
+    }
+  }
+
+  returnArray(){
+    if(!this.head){
+      return []
     }else{
       let allArray = []
       let currentNode = this.head
@@ -43,6 +95,27 @@ export default class linkedList{
         currentNode = currentNode.nextNode;
         allArray.push(currentNode.value)
       }
+      return allArray
+    }
+  }
+
+
+  returnArrayFromIndex(){
+    if(!this.head){
+      return []
+    }else{
+
+      let allArray = []
+      let currentNode = this.head
+      allArray.push(currentNode.value)
+      while(currentNode.nextNode){
+        currentNode = currentNode.nextNode;
+        allArray.push(currentNode.value)
+      }
+
+
+
+
       return allArray
     }
   }
