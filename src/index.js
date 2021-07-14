@@ -10,6 +10,10 @@ let taskList = new linkedList();
 
 
 function build(){
+    let removalItems = document.querySelectorAll('.taskItem')
+    removalItems.forEach((elem)=>{
+        elem.remove()
+    })
     let objectsArray = []
     let itemsArray = taskList.returnArray();
     for(let i = 0;i<itemsArray.length;i+=1){
