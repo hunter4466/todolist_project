@@ -5,7 +5,7 @@
 
 > Creating an Awesome Books Page
 
-![screenshot](./Assets/Images/Screenshots/preview1.png)
+![screenshot](/Assets/Images/Screenshots/preview1.png)
 
 First project from Figma template
 
@@ -21,6 +21,8 @@ To get a local copy up and running follow these simple example steps.
 Run:
 - `git clone https://github.com/hunter4466/todolist_project.git`
 - `cd todolist_project`
+-`Install node_modules, run npm install and install the latest node version`
+-`Install webpack package`
 - Open ./dist/index.html in browser
 
 
