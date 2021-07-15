@@ -1,4 +1,4 @@
-export default function htmlBuilder(obj){
+export default function htmlBuilder(obj) {
   for (let i = 0; i < obj.length; i += 1) {
     if (obj[i].length === 2) {
       obj[i][0].appendChild(obj[i][1]);
