@@ -10,12 +10,12 @@ const refreshIconImg = document.getElementById('refreshIcon');
 refreshIconImg.src = refreshicon;
 const newTaskInput = document.getElementById('newTaskInput');
 const taskList = new LinkedList();
-function tryalPopulate(){
-taskList.add({ description: "Clean my room", completed: false, index: null });
-taskList.add({ description: "Do my homework", completed: false, index: null });
-taskList.add({ description: "Take the trash out", completed: false, index: null });
-taskList.indexify();
-if (storageAvailable) {
+function tryalPopulate() {
+  taskList.add({ description: 'Clean my room', completed: false, index: null });
+  taskList.add({ description: 'Do my homework', completed: false, index: null });
+  taskList.add({ description: 'Take the trash out', completed: false, index: null });
+  taskList.indexify();
+  if (storageAvailable) {
     localStorage.setItem('toDoList', JSON.stringify(taskList.head));
   }
 }
