@@ -5,7 +5,7 @@
 
 > Creating an Awesome Books Page
 
-![screenshot](/Assets/Images/Screenshots/preview1.png)
+![screenshot](./src/Assets/Images/Screenshots/preview1.png)
 
 First project from Figma template
 
