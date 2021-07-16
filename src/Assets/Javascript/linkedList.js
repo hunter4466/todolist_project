@@ -28,6 +28,14 @@ export default class LinkedList {
     return false;
   }
 
+  count(){
+    if(this.head){
+      
+    }else{
+      return false
+    }
+  }
+
   replaceIndex(one, two) {
     let first = one-1
     let second = two-1
