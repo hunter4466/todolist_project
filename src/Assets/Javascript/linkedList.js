@@ -28,16 +28,26 @@ export default class LinkedList {
     return false;
   }
 
-  replaceIndex(first, second) {
+  count(){
+    if(this.head){
+      
+    }else{
+      return false
+    }
+  }
+
+  replaceIndex(one, two) {
+    let first = one-1
+    let second = two-1
     if (!this.head) {
       return [];
     }
     const allArray = [];
     let currentNode = this.head;
-    allArray.push(currentNode.value.index);
+    allArray.push(currentNode.value);
     while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
-      allArray.push(currentNode.value.index);
+      allArray.push(currentNode.value);
     }
     const newArray = [];
     for (let i = 0; i < allArray.length; i += 1) {
@@ -48,15 +58,16 @@ export default class LinkedList {
       } else {
         newArray.push(allArray[i]);
       }
-      let currentNode2 = this.head;
-      let count = 0;
-      currentNode2.value.index = newArray[count];
-      while (currentNode2.nextNode) {
-        count += 1;
-        currentNode2 = currentNode2.nextNode;
-        currentNode2.value.index = newArray[count];
-      }
     }
+
+    let newLinkedList = new NewNode(newArray[newArray.length-1])
+    newLinkedList.value.index = 5
+    for(let i = 1;i<newArray.length;i+=1){
+        const newItem = new NewNode(newArray[newArray.length-(i+1)], newLinkedList);
+     newItem.value.index = newArray.length-(i)
+        newLinkedList = newItem
+    }
+    this.head = newLinkedList
     return true;
   }
 
@@ -81,7 +92,7 @@ export default class LinkedList {
     }
     const allArray = [];
     let currentNode = this.head;
-    allArray.push(currentNode.value);
+      allArray.push(currentNode.value);
     while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
       allArray.push(currentNode.value);
@@ -89,22 +100,70 @@ export default class LinkedList {
     return allArray;
   }
 
-  returnArrayFromIndex() {
+  returnFromIndex() {
     if (!this.head) {
       return [];
-    }
-
-    const allArray = [];
-    let currentNode = this.head;
-    allArray.push(currentNode.value);
+    } else{
+      let allArray = []
+      let currentNode = this.head;
+      allArray.push(currentNode.value);
     while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
       allArray.push(currentNode.value);
     }
-
-    return allArray;
+    let newArray = []
+    let stage = 0
+    for(let i = 0;i<allArray.length;i+=1){
+      while(allArray[i].index === stage+1){
+          newArray.push(allArray[stage])
+          stage+=1
+        }
+      }
+      return newArray
+    }
   }
 
+
+
+  changeState(value,bool){
+    if(this.head){
+      let element = this.head
+      while(element.nextNode){
+        if(element.value.index === value){
+          element.value.completed = bool
+        }
+        element = element.nextNode
+      }
+    }else{
+      return false
+    }
+  }
+/*                                                ON DEVELOPMENT
+  removeState(){
+    let tempList = this.head
+    let elemArray = []
+    while(tempList.value){
+      if(tempList.value.completed === false){
+        let tempNode = new NewNode(tempList.value)
+        elemArray.push(tempNode)
+        tempList = tempList.nextNode
+      }
+      else{
+        tempList = tempList.nextNode
+      }
+    }
+    let newLinkedList = new NewNode(elemArray[elemArray.length-1])
+    newLinkedList.value.index = 5
+    for(let i = 1;i<elemArray.length;i+=1){
+        const newItem = new NewNode(elemArray[elemArray.length-(i+1)], newLinkedList);
+     newItem.value.index = elemArray.length-(i)
+        newLinkedList = newItem
+    }
+    console.log(newLinkedList)
+    this.head = newLinkedList
+
+  }
+*/
   remove(index = null) {
     if (index) {
       if (this.head) {

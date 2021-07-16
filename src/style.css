@@ -147,9 +147,12 @@
   padding-right: 10px;
 }
 
-.taskItem {
+.dropbox {
   height: fit-content;
   list-style: none;
+}
+.taskItem {
+  height: fit-content;
   display: flex;
   flex-direction: row;
   align-content: center;
