@@ -125,30 +125,28 @@ export default class LinkedList {
         if (element.value.index === value) {
           element.value.completed = bool;
         }
-        
       }
-      console.log(this.head)
       return true;
     }
     return false;
   }
-  returnSelected(){
-    if(this.head){
-      let tempNode = this.head
-      let indexArray = []
-     if(tempNode.value.completed === true){
-        indexArray.push(tempNode.value.index)
+
+  returnSelected() {
+    if (this.head) {
+      let tempNode = this.head;
+      const indexArray = [];
+      if (tempNode.value.completed === true) {
+        indexArray.push(tempNode.value.index);
       }
-      while(tempNode.nextNode){
-        tempNode = tempNode.nextNode
-        if(tempNode.value.completed === true){
-          indexArray.push(tempNode.value.index)
+      while (tempNode.nextNode) {
+        tempNode = tempNode.nextNode;
+        if (tempNode.value.completed === true) {
+          indexArray.push(tempNode.value.index);
         }
       }
-      return indexArray
-    }else{
-      return false
+      return indexArray;
     }
+    return false;
   }
 
   length() {

@@ -8,7 +8,7 @@ import eraseicon from './Assets/Images/eraseicon.png';
 import {
   dragStart, dragEnd, dragOver, dragDrop,
 } from './Assets/Javascript/dragHandler.js';
-import {deleteItem, removeSelected} from './Assets/Javascript/updateHandler.js';
+import { deleteItem, removeSelected } from './Assets/Javascript/updateHandler.js';
 
 const toDoList = document.getElementById('to_do_list');
 const refreshIconImg = document.getElementById('refreshIcon');
@@ -64,16 +64,16 @@ export default function build(linkList) {
         }
       }
     });
-    taskEraseIcon.addEventListener('click',(e)=>{
-      deleteItem(taskList,itemsArray[i].index-1)
+    taskEraseIcon.addEventListener('click', () => {
+      deleteItem(taskList, itemsArray[i].index - 1);
       taskList.indexify();
       if (storageAvailable) {
         localStorage.setItem('toDoList', JSON.stringify(taskList.head));
       }
-      build(taskList)
-    })
+      build(taskList);
+    });
 
-    taskText.addEventListener('input',(ev)=>{
+    taskText.addEventListener('input', (ev) => {
       ev.preventDefault();
       const htmlTasks = document.querySelectorAll('.taskText');
       const htmlCompleted = document.querySelectorAll('.taskCompleted');
@@ -96,7 +96,7 @@ export default function build(linkList) {
       if (storageAvailable) {
         localStorage.setItem('toDoList', JSON.stringify(tempList.head));
       }
-    })
+    });
     newTaskObj.addEventListener('dragstart', dragStart);
     newTaskObj.addEventListener('dragend', dragEnd);
     newTaskObj.addEventListener('dragover', dragOver);
@@ -148,14 +148,13 @@ newTaskInput.addEventListener('keypress', (e) => {
 const clearButton = document.getElementById('clearButton');
 clearButton.addEventListener('click', (e) => {
   e.preventDefault();
-  let toClearArray = taskList.returnSelected();
-  console.log(toClearArray)
-  removeSelected(taskList,toClearArray);
+  const toClearArray = taskList.returnSelected();
+  removeSelected(taskList, toClearArray);
   taskList.indexify();
-      if (storageAvailable) {
-        localStorage.setItem('toDoList', JSON.stringify(taskList.head));
-      }
-      build(taskList)
+  if (storageAvailable) {
+    localStorage.setItem('toDoList', JSON.stringify(taskList.head));
+  }
+  build(taskList);
 });
 window.onstorage = () => {
   build(taskList);
