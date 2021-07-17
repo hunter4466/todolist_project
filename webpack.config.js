@@ -10,6 +10,7 @@ module.exports = {
     dataHandler: './src/Assets/Javascript/dataHandler.js',
     dragGandler: './src/Assets/Javascript/dragHandler.js',
     completionHandler: './src/Assets/Javascript/completionHandler.js',
+    updateHandler: './src/Assets/Javascript/updateHandler.js',
   },
   devServer: {
     contentBase: './dist',

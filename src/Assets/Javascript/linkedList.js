@@ -117,43 +117,39 @@ export default class LinkedList {
   changeState(value, bool) {
     if (this.head) {
       let element = this.head;
+      if (element.value.index === value) {
+        element.value.completed = bool;
+      }
       while (element.nextNode) {
+        element = element.nextNode;
         if (element.value.index === value) {
           element.value.completed = bool;
         }
-        element = element.nextNode;
       }
       return true;
     }
     return false;
   }
 
-  /*                                                ON DEVELOPMENT
-  removeState(){
-    let tempList = this.head
-    let elemArray = []
-    while(tempList.value){
-      if(tempList.value.completed === false){
-        let tempNode = new NewNode(tempList.value)
-        elemArray.push(tempNode)
-        tempList = tempList.nextNode
+  returnSelected() {
+    if (this.head) {
+      let tempNode = this.head;
+      const indexArray = [];
+      if (tempNode.value.completed === true) {
+        indexArray.push(tempNode.value.index);
       }
-      else{
-        tempList = tempList.nextNode
+      while (tempNode.nextNode) {
+        tempNode = tempNode.nextNode;
+        if (tempNode.value.completed === true) {
+          indexArray.push(tempNode.value.index);
+        }
       }
+      return indexArray;
     }
-    let newLinkedList = new NewNode(elemArray[elemArray.length-1])
-    newLinkedList.value.index = 5
-    for(let i = 1;i<elemArray.length;i+=1){
-        const newItem = new NewNode(elemArray[elemArray.length-(i+1)], newLinkedList);
-     newItem.value.index = elemArray.length-(i)
-        newLinkedList = newItem
-    }
-    console.log(newLinkedList)
-    this.head = newLinkedList
-
+    return false;
   }
-*/length() {
+
+  length() {
     if (this.head) {
       let activeNode = this.head;
       let count = 1;
