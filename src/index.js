@@ -73,8 +73,8 @@ export default function build(linkList) {
       build(taskList)
     })
 
-    taskText.addEventListener('input',(event)=>{
-      event.preventDefault();
+    taskText.addEventListener('input',(ev)=>{
+      ev.preventDefault();
       const htmlTasks = document.querySelectorAll('.taskText');
       const htmlCompleted = document.querySelectorAll('.taskCompleted');
       const htmlObjects = [];
