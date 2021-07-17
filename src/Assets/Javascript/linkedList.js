@@ -163,9 +163,19 @@ export default class LinkedList {
     this.head = newLinkedList
 
   }
-*/
+*/length(){
+if(this.head){
+  let activeNode = this.head
+  let count = 1;
+  while(activeNode.nextNode){
+    count+=1
+    activeNode = activeNode.nextNode;
+  }
+}else{
+  return 0
+}
+}
   remove(index = null) {
-    if (index) {
       if (this.head) {
         let valArray = [];
         let activeValue = this.head;
@@ -198,34 +208,4 @@ export default class LinkedList {
       }
       return false;
     }
-    if (!this.head) {
-      return -1;
-    }
-    let valArray = [];
-    let activeValue = this.head;
-
-    valArray.push(activeValue.value);
-    while (activeValue.nextNode) {
-      activeValue = activeValue.nextNode;
-      valArray.push(activeValue.value);
-    }
-    const subsArray = [];
-    for (let i = 0; i < valArray.length; i += 1) {
-      if (i !== valArray.length - 1) {
-        subsArray.push(valArray[i]);
-      }
-    }
-    const returnValue = valArray[valArray.length - 1];
-    valArray = subsArray.reverse();
-    if (subsArray.length !== 0) {
-      let onHold = new NewNode(valArray[0]);
-      for (let i = 1; i < valArray.length; i += 1) {
-        onHold = new NewNode(valArray[i], onHold);
-      }
-      this.head = onHold;
-    } else {
-      this.head = null;
-    }
-    return returnValue;
-  }
 }
