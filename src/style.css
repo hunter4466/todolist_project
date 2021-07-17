@@ -149,7 +149,6 @@
 
 .taskItem {
   height: fit-content;
-  list-style: none;
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -158,6 +157,7 @@
   border-top: solid;
   border-color: rgb(228, 228, 228);
   border-top-width: 0.5px;
+  background-color: rgb(255, 255, 255);
 }
 
 .taskCheckBox {
@@ -184,6 +184,7 @@
   padding-bottom: 9px;
   padding-right: 1vw;
   padding-left: 1vw;
+  border-style: none;
 }
 
 .dragIcon {
@@ -192,6 +193,7 @@
   margin-top: auto;
   margin-bottom: auto;
   padding-right: 14px;
+  cursor: move;
 }
 
 .clearButton {

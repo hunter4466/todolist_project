@@ -4,57 +4,93 @@ import storageAvailable from './Assets/Javascript/dataHandler.js';
 import './style.css';
 import dragIcon from './Assets/Images/dragicon.png';
 import refreshicon from './Assets/Images/refreshicon.png';
+import {
+  dragStart, dragEnd, dragOver, dragDrop,
+} from './Assets/Javascript/dragHandler.js';
 
 const toDoList = document.getElementById('to_do_list');
 const refreshIconImg = document.getElementById('refreshIcon');
 refreshIconImg.src = refreshicon;
 const newTaskInput = document.getElementById('newTaskInput');
 const taskList = new LinkedList();
-function tryalPopulate() {
-  taskList.add({ description: 'Clean my room', completed: false, index: null });
-  taskList.add({ description: 'Do my homework', completed: false, index: null });
-  taskList.add({ description: 'Take the trash out', completed: false, index: null });
-  taskList.indexify();
-  if (storageAvailable) {
-    localStorage.setItem('toDoList', JSON.stringify(taskList.head));
-  }
-}
-tryalPopulate();
-
-function build(linkList) {
+export default function build(linkList) {
   const removalItems = document.querySelectorAll('.taskItem');
   removalItems.forEach((elem) => {
-    elem.remove();
+    elem.remove(0);
   });
-  const objectsArray = [];
+  const objArray = [];
+
   const localInfo = JSON.parse(localStorage.getItem('toDoList'));
   linkList.head = localInfo;
-  const itemsArray = taskList.returnArray();
+  const itemsArray = taskList.returnFromIndex();
   for (let i = 0; i < itemsArray.length; i += 1) {
     const newTaskObj = document.createElement('li');
+    const newTaskObj2 = document.createElement('div');
     const checkBox = document.createElement('input');
-    const taskText = document.createElement('p');
+    const taskText = document.createElement('input');
+    const taskCompleted = document.createElement('input');
+
     const taskDragIcon = document.createElement('img');
-    objectsArray.push([toDoList, newTaskObj, 'taskItem', null, `taskItem_${i}`]);
-    objectsArray.push([newTaskObj, checkBox, 'taskCheckBox']);
-    objectsArray.push([newTaskObj, taskText, 'taskText', `${itemsArray[i].description}`]);
-    objectsArray.push([newTaskObj, taskDragIcon, 'dragIcon']);
+    objArray.push([toDoList, newTaskObj, 'taskItem', null, `taskItem_${i}`]);
+    objArray.push([newTaskObj, checkBox, 'taskCheckBox']);
+    objArray.push([newTaskObj, taskText, 'taskText']);
+    objArray.push([newTaskObj, taskCompleted, 'taskCompleted']);
+    objArray.push([newTaskObj, taskDragIcon, 'dragIcon']);
+    if (itemsArray[i].completed === true) {
+      checkBox.checked = true;
+    }
     checkBox.setAttribute('type', 'checkbox');
+    taskText.setAttribute('type', 'text');
+    taskCompleted.setAttribute('type', 'hidden');
+    taskCompleted.setAttribute('value', itemsArray[i].completed);
+    newTaskObj2.setAttribute('draggable', 'true');
+    taskText.setAttribute('value', itemsArray[i].description);
     taskDragIcon.setAttribute('src', dragIcon);
+
+    checkBox.addEventListener('change', () => {
+      if (checkBox.checked) {
+        taskList.changeState(itemsArray[i].index, true);
+        if (storageAvailable) {
+          localStorage.setItem('toDoList', JSON.stringify(taskList.head));
+        }
+      } else {
+        taskList.changeState(itemsArray[i].index, false);
+        if (storageAvailable) {
+          localStorage.setItem('toDoList', JSON.stringify(taskList.head));
+        }
+      }
+    });
+
+    newTaskObj.addEventListener('dragstart', dragStart);
+    newTaskObj.addEventListener('dragend', dragEnd);
+    newTaskObj.addEventListener('dragover', dragOver);
+    newTaskObj.addEventListener('drop', (e) => {
+      dragDrop(e);
+      const htmlTasks = document.querySelectorAll('.taskText');
+      const htmlCompleted = document.querySelectorAll('.taskCompleted');
+      const htmlObjects = [];
+      for (let i = 0; i < htmlTasks.length; i += 1) {
+        htmlObjects.push({
+          description: htmlTasks[htmlTasks.length - (i + 1)].value,
+          completed: htmlCompleted[htmlTasks.length - (i + 1)].value,
+          index: htmlTasks.length - i,
+        });
+      }
+      const tempList = new LinkedList();
+      for (let i = 0; i < htmlObjects.length; i += 1) {
+        tempList.add({
+          description: htmlObjects[i].description,
+          completed: htmlObjects[i].completed,
+          index: htmlObjects[i].index,
+        });
+      }
+      if (storageAvailable) {
+        localStorage.setItem('toDoList', JSON.stringify(tempList.head));
+      }
+      build(taskList);
+    });
   }
-  htmlBuilder(objectsArray);
-  const toDrag = document.querySelectorAll('.taskItem');
-  function handleDragStart(e) {
-    e.style.opacity = '0.4';
-  }
-  function handleDragEnd(e) {
-    e.style.opacity = '1';
-  }
-  toDrag.forEach((elem) => {
-    elem.setAttribute('draggable', 'true');
-    elem.addEventListener('dragstart', handleDragStart, false);
-    elem.addEventListener('dragend', handleDragEnd, false);
-  });
+  htmlBuilder(objArray);
 }
 if (localStorage.getItem('toDoList')) {
   taskList.head = JSON.parse(localStorage.getItem('toDoList'));
@@ -72,3 +108,12 @@ newTaskInput.addEventListener('keypress', (e) => {
     newTaskInput.value = '';
   }
 });
+
+const clearButton = document.getElementById('clearButton');
+clearButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  taskList.removeState();
+});
+window.onstorage = () => {
+  build(taskList);
+};
