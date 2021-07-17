@@ -17,7 +17,7 @@ console.log('build, have been called')
   removalItems.forEach((elem) => {
     elem.remove(0);
   });
-  const objectsArray = [];
+  const objArray = [];
   
   const localInfo = JSON.parse(localStorage.getItem('toDoList'));
   linkList.head = localInfo;
@@ -31,11 +31,11 @@ console.log('build, have been called')
     const taskCompleted = document.createElement('input');
 
     const taskDragIcon = document.createElement('img');
-    objectsArray.push([toDoList, newTaskObj, 'taskItem', null, `taskItem_${i}`]);
-    objectsArray.push([newTaskObj, checkBox, 'taskCheckBox']);
-    objectsArray.push([newTaskObj, taskText, 'taskText']);
-    objectsArray.push([newTaskObj, taskCompleted,'taskCompleted']);
-    objectsArray.push([newTaskObj, taskDragIcon, 'dragIcon']);
+    objArray.push([toDoList, newTaskObj, 'taskItem', null, `taskItem_${i}`]);
+    objArray.push([newTaskObj, checkBox, 'taskCheckBox']);
+    objArray.push([newTaskObj, taskText, 'taskText']);
+    objArray.push([newTaskObj, taskCompleted,'taskCompleted']);
+    objArray.push([newTaskObj, taskDragIcon, 'dragIcon']);
     if(itemsArray[i].completed === true){
       checkBox.checked = true;
     }
