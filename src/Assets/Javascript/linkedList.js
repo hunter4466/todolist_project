@@ -28,17 +28,9 @@ export default class LinkedList {
     return false;
   }
 
-  count(){
-    if(this.head){
-      
-    }else{
-      return false
-    }
-  }
-
   replaceIndex(one, two) {
-    let first = one-1
-    let second = two-1
+    const first = one - 1;
+    const second = two - 1;
     if (!this.head) {
       return [];
     }
@@ -60,14 +52,14 @@ export default class LinkedList {
       }
     }
 
-    let newLinkedList = new NewNode(newArray[newArray.length-1])
-    newLinkedList.value.index = 5
-    for(let i = 1;i<newArray.length;i+=1){
-        const newItem = new NewNode(newArray[newArray.length-(i+1)], newLinkedList);
-     newItem.value.index = newArray.length-(i)
-        newLinkedList = newItem
+    let newLinkedList = new NewNode(newArray[newArray.length - 1]);
+    newLinkedList.value.index = 5;
+    for (let i = 1; i < newArray.length; i += 1) {
+      const newItem = new NewNode(newArray[newArray.length - (i + 1)], newLinkedList);
+      newItem.value.index = newArray.length - (i);
+      newLinkedList = newItem;
     }
-    this.head = newLinkedList
+    this.head = newLinkedList;
     return true;
   }
 
@@ -92,7 +84,7 @@ export default class LinkedList {
     }
     const allArray = [];
     let currentNode = this.head;
-      allArray.push(currentNode.value);
+    allArray.push(currentNode.value);
     while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
       allArray.push(currentNode.value);
@@ -103,42 +95,40 @@ export default class LinkedList {
   returnFromIndex() {
     if (!this.head) {
       return [];
-    } else{
-      let allArray = []
-      let currentNode = this.head;
-      allArray.push(currentNode.value);
+    }
+    const allArray = [];
+    let currentNode = this.head;
+    allArray.push(currentNode.value);
     while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
       allArray.push(currentNode.value);
     }
-    let newArray = []
-    let stage = 0
-    for(let i = 0;i<allArray.length;i+=1){
-      while(allArray[i].index === stage+1){
-          newArray.push(allArray[stage])
-          stage+=1
-        }
+    const newArray = [];
+    let stage = 0;
+    for (let i = 0; i < allArray.length; i += 1) {
+      while (allArray[i].index === stage + 1) {
+        newArray.push(allArray[stage]);
+        stage += 1;
       }
-      return newArray
     }
+    return newArray;
   }
 
-
-
-  changeState(value,bool){
-    if(this.head){
-      let element = this.head
-      while(element.nextNode){
-        if(element.value.index === value){
-          element.value.completed = bool
+  changeState(value, bool) {
+    if (this.head) {
+      let element = this.head;
+      while (element.nextNode) {
+        if (element.value.index === value) {
+          element.value.completed = bool;
         }
-        element = element.nextNode
+        element = element.nextNode;
       }
-    }else{
-      return false
+      return true;
     }
+    return false;
   }
-/*                                                ON DEVELOPMENT
+
+  /*                                                ON DEVELOPMENT
   removeState(){
     let tempList = this.head
     let elemArray = []
@@ -163,49 +153,50 @@ export default class LinkedList {
     this.head = newLinkedList
 
   }
-*/length(){
-if(this.head){
-  let activeNode = this.head
-  let count = 1;
-  while(activeNode.nextNode){
-    count+=1
-    activeNode = activeNode.nextNode;
-  }
-}else{
-  return 0
-}
-}
-  remove(index = null) {
-      if (this.head) {
-        let valArray = [];
-        let activeValue = this.head;
-        valArray.push(activeValue.value);
-        while (activeValue.nextNode) {
-          activeValue = activeValue.nextNode;
-          valArray.push(activeValue.value);
-        }
-        if (index > valArray.length) {
-          return false;
-        }
-        const newArray = [];
-        for (let i = 0; i < valArray.length; i += 1) {
-          if (i !== index) {
-            newArray.push(valArray[i]);
-          }
-        }
-        const returnValue = valArray[index];
-        valArray = newArray.reverse();
-        if (newArray.length !== 0) {
-          let onHold = new NewNode(valArray[0]);
-          for (let i = 1; i < valArray.length; i += 1) {
-            onHold = new NewNode(valArray[i], onHold);
-          }
-          this.head = onHold;
-        } else {
-          this.head = null;
-        }
-        return returnValue;
+*/length() {
+    if (this.head) {
+      let activeNode = this.head;
+      let count = 1;
+      while (activeNode.nextNode) {
+        count += 1;
+        activeNode = activeNode.nextNode;
       }
-      return false;
+      return count;
     }
+    return 0;
+  }
+
+  remove(index = null) {
+    if (this.head) {
+      let valArray = [];
+      let activeValue = this.head;
+      valArray.push(activeValue.value);
+      while (activeValue.nextNode) {
+        activeValue = activeValue.nextNode;
+        valArray.push(activeValue.value);
+      }
+      if (index > valArray.length) {
+        return false;
+      }
+      const newArray = [];
+      for (let i = 0; i < valArray.length; i += 1) {
+        if (i !== index) {
+          newArray.push(valArray[i]);
+        }
+      }
+      const returnValue = valArray[index];
+      valArray = newArray.reverse();
+      if (newArray.length !== 0) {
+        let onHold = new NewNode(valArray[0]);
+        for (let i = 1; i < valArray.length; i += 1) {
+          onHold = new NewNode(valArray[i], onHold);
+        }
+        this.head = onHold;
+      } else {
+        this.head = null;
+      }
+      return returnValue;
+    }
+    return false;
+  }
 }
