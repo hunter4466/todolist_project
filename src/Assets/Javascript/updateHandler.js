@@ -3,9 +3,9 @@ export function deleteItem(linkList,index){
 
   };
 
-export function removeSelected(linkList,array){
+export function removeSelected(linkedList,array){
     for(let i = 0;i<array.length;i+=1){
-        linkList.remove((array[array.length-(i+1)])-1)
+        linkedList.remove((array[array.length-(i+1)])-1)
     }
 
   };
