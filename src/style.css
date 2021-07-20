@@ -147,10 +147,6 @@
   padding-right: 10px;
 }
 
-.dropbox {
-  height: fit-content;
-  list-style: none;
-}
 .taskItem {
   height: fit-content;
   display: flex;
@@ -161,6 +157,7 @@
   border-top: solid;
   border-color: rgb(228, 228, 228);
   border-top-width: 0.5px;
+  background-color: rgb(255, 255, 255);
 }
 
 .taskCheckBox {
@@ -187,6 +184,7 @@
   padding-bottom: 9px;
   padding-right: 1vw;
   padding-left: 1vw;
+  border-style: none;
 }
 
 .dragIcon {
@@ -195,6 +193,16 @@
   margin-top: auto;
   margin-bottom: auto;
   padding-right: 14px;
+  cursor: move;
+}
+
+.eraseIcon {
+  width: 15px;
+  height: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 14px;
+  cursor: pointer;
 }
 
 .clearButton {
