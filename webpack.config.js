@@ -24,6 +24,7 @@ module.exports = {
     dragGandler: './src/Assets/Javascript/dragHandler.js',
     completionHandler: './src/Assets/Javascript/completionHandler.js',
     updateHandler: './src/Assets/Javascript/updateHandler.js',
+    updateInput: './src/Assets/Javascript/updateInput.js',
   },
   devServer: {
     contentBase: './dist',

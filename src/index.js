@@ -5,6 +5,7 @@ import './style.css';
 import dragIcon from './Assets/Images/dragicon.png';
 import refreshicon from './Assets/Images/refreshicon.png';
 import eraseicon from './Assets/Images/eraseicon.png';
+import updateInput from './Assets/Javascript/updateInput.js';
 import {
   dragStart, dragEnd, dragOver, dragDrop,
 } from './Assets/Javascript/dragHandler.js';
@@ -17,8 +18,9 @@ const newTaskInput = document.getElementById('newTaskInput');
 const taskList = new LinkedList();
 export default function build(linkList) {
   const removalItems = document.querySelectorAll('.taskItem');
+
   removalItems.forEach((elem) => {
-    elem.remove(0);
+    elem.remove();
   });
   const objArray = [];
 
@@ -72,31 +74,25 @@ export default function build(linkList) {
       }
       build(taskList);
     });
+    
+
+
 
     taskText.addEventListener('input', (ev) => {
       ev.preventDefault();
       const htmlTasks = document.querySelectorAll('.taskText');
       const htmlCompleted = document.querySelectorAll('.taskCompleted');
-      const htmlObjects = [];
-      for (let i = 0; i < htmlTasks.length; i += 1) {
-        htmlObjects.push({
-          description: htmlTasks[htmlTasks.length - (i + 1)].value,
-          completed: htmlCompleted[htmlTasks.length - (i + 1)].value,
-          index: htmlTasks.length - i,
-        });
-      }
-      const tempList = new LinkedList();
-      for (let i = 0; i < htmlObjects.length; i += 1) {
-        tempList.add({
-          description: htmlObjects[i].description,
-          completed: htmlObjects[i].completed,
-          index: htmlObjects[i].index,
-        });
-      }
+      let newData = updateInput(htmlTasks,htmlCompleted,LinkedList);
       if (storageAvailable) {
-        localStorage.setItem('toDoList', JSON.stringify(tempList.head));
+        localStorage.setItem('toDoList', JSON.stringify(newData.head));
       }
     });
+
+
+
+
+
+
     newTaskObj.addEventListener('dragstart', dragStart);
     newTaskObj.addEventListener('dragend', dragEnd);
     newTaskObj.addEventListener('dragover', dragOver);
