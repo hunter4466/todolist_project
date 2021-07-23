@@ -1,5 +1,5 @@
-import LinkedList from './linkedList.js';
-import localStorageMock from './localStorageMock.js';
+import LinkedList from '../linkedList.js';
+import localStorageMock from '../localStorageMock.js';
 
 describe('Add function works',()=>{
     
