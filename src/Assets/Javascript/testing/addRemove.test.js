@@ -3,7 +3,6 @@ import LocalStorageMock from './__Mocks__/LocalStorageMock.js';
 import CreateElement from './__Mocks__/htmlObjCreatorMock.js';
 import htmlBuilder from '../modules.js';
 
-
 describe('Add function works', () => {
   const newLinkedList = new LinkedList();
   newLinkedList.add({ description: 'Do my homework', completed: false, index: 1 });
@@ -98,5 +97,3 @@ describe('Add function works', () => {
     );
   });
 });
-
-
