@@ -3,11 +3,10 @@
 
 # To do list - project
 
-> Creating an Awesome Books Page
+> Creating an To do list project.
 
 ![screenshot](./src/Assets/Images/Screenshots/preview1.png)
 
-First project from Figma template
 
 
 ## Built With
@@ -24,6 +23,12 @@ Run:
 -`Install node_modules, run npm install and install the latest node version`
 -`Install webpack package`
 - Open ./dist/index.html in browser
+
+## Link
+
+Get a live preview of the project on this link
+
+- Link: [@githubhandle](https://hunter4466.github.io/todolist_project/dist/index.html)
 
 
 ## Authors
