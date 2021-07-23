@@ -43,6 +43,14 @@ describe('Udpate function works', () => {
   expect(returnedHtml).toEqual("<ul id=\"todolist\"><li><input id=\"checkbox_0\" class=\"checkboxObj\" value=\"false\"><input id=\"task_0\" class=\"taskObj\" value=\"Code\"><input id=\"index_0\" class=\"indexObj\" value=\"1\"></li><li><input id=\"checkbox_1\" class=\"checkboxObj\" value=\"true\"><input id=\"task_1\" class=\"taskObj\" value=\"Train my dog\"><input id=\"index_1\" class=\"indexObj\" value=\"2\"></li><li><input id=\"checkbox_2\" class=\"checkboxObj\" value=\"false\"><input id=\"task_2\" class=\"taskObj\" value=\"Do my homework\"><input id=\"index_2\" class=\"indexObj\" value=\"3\"></li></ul>");
 });
 
-
+test('Drag and drop works correctly and stores changes on local storage', () => {
+    linkList.replaceIndex(1,2)
+    linkList.indexify()
+    let toStore3 = linkList.returnArray();
+    simStorage.setItem('toDoList', JSON.stringify(toStore3));
+    let toBuild2 = JSON.parse(simStorage.getItem('toDoList'));
+    let returnedHtml = simHtml(toBuild2);
+  expect(returnedHtml).toEqual("<ul id=\"todolist\"><li><input id=\"checkbox_0\" class=\"checkboxObj\" value=\"false\"><input id=\"task_0\" class=\"taskObj\" value=\"Clean my room\"><input id=\"index_0\" class=\"indexObj\" value=\"1\"></li><li><input id=\"checkbox_1\" class=\"checkboxObj\" value=\"false\"><input id=\"task_1\" class=\"taskObj\" value=\"Code\"><input id=\"index_1\" class=\"indexObj\" value=\"2\"></li><li><input id=\"checkbox_2\" class=\"checkboxObj\" value=\"false\"><input id=\"task_2\" class=\"taskObj\" value=\"Do my homework\"><input id=\"index_2\" class=\"indexObj\" value=\"3\"></li></ul>");
+});
 
 });
