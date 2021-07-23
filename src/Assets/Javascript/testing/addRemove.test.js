@@ -57,47 +57,6 @@ describe('Add function works', () => {
     );
   });
 
-  test('Html builds correctly after removing', () => {
-    newLinkedList.remove(0);
-    const objsArray = newLinkedList.returnArray();
-    const mainParent = new CreateElement('ul');
-    const containersArray = [];
-    for (let i = 0; i < objsArray.length; i += 1) {
-      const tempObj = new CreateElement('li');
-      containersArray.push(tempObj);
-    }
-    const materialArray = [];
-
-    for (let i = 0; i < containersArray.length; i += 1) {
-      const child1 = new CreateElement('input', objsArray[i].description);
-      const child2 = new CreateElement('input', objsArray[i].completed);
-      const child3 = new CreateElement('input', objsArray[i].index);
-      materialArray.push([containersArray[i], child1]);
-      materialArray.push([containersArray[i], child2]);
-      materialArray.push([containersArray[i], child3]);
-    }
-    for (let i = 0; i < containersArray.length; i += 1) {
-      materialArray.push([mainParent, containersArray[i]]);
-    }
-
-    htmlBuilder(materialArray);
-    const arrayToStringify = [];
-    arrayToStringify.push(`<${mainParent.type}>\n`);
-    for (let i = 0; i < mainParent.childs.length; i += 1) {
-      arrayToStringify.push(`    <${mainParent.childs[i].type}>\n`);
-      for (let a = 0; a < mainParent.childs[i].childs.length; a += 1) {
-        arrayToStringify.push(`        <${mainParent.childs[i].childs[a].type} value=${mainParent.childs[i].childs[a].value}></${mainParent.childs[i].childs[a].type}>\n`);
-      }
-      arrayToStringify.push(`    </${mainParent.childs[i].type}>\n`);
-    }
-    arrayToStringify.push(`</${mainParent.type}>`);
-
-    const resultString = arrayToStringify.reduce((a, b) => a + b);
-    expect(resultString).toEqual(
-      '<ul>\n    <li>\n        <input value=Clean my room></input>\n        <input value=false></input>\n        <input value=2></input>\n    </li>\n    <li>\n        <input value=Do my homework></input>\n        <input value=false></input>\n        <input value=1></input>\n    </li>\n</ul>',
-    );
-  });
-
 });
 
 
