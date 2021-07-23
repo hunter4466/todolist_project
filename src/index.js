@@ -74,24 +74,16 @@ export default function build(linkList) {
       }
       build(taskList);
     });
-    
-
-
 
     taskText.addEventListener('input', (ev) => {
       ev.preventDefault();
       const htmlTasks = document.querySelectorAll('.taskText');
       const htmlCompleted = document.querySelectorAll('.taskCompleted');
-      let newData = updateInput(htmlTasks,htmlCompleted,LinkedList);
+      const newData = updateInput(htmlTasks, htmlCompleted, LinkedList);
       if (storageAvailable) {
         localStorage.setItem('toDoList', JSON.stringify(newData.head));
       }
     });
-
-
-
-
-
 
     newTaskObj.addEventListener('dragstart', dragStart);
     newTaskObj.addEventListener('dragend', dragEnd);
